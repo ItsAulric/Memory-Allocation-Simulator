@@ -1,110 +1,131 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import './App.css'
+import './App.css';
 import AvailableBlocks from './Components/AvailableBlocks/AvailableBlocks';
 
+const initialBlocks = [
+    { id: 1, block_size: 85000 },
+    { id: 2, block_size: 130000 },
+    { id: 3, block_size: 40000 },
+    { id: 4, block_size: 70000 }
+];
+const strategies = ['First Fit', 'Best Fit', 'Worst Fit'];
+const totalMemory = initialBlocks.reduce((total, block) => total + block.block_size, 0);
+
 export default function App() {
-    const [usedMemory, setUsedMemory] = useState(0);
-    const formattedUsedMemory = usedMemory.toLocaleString();
-    const [freeMemory, setFreeMemory] = useState(255000);
-    const formattedFreeMemory = freeMemory.toLocaleString();
+    const [blocks, setBlocks] = useState(initialBlocks);
+    const [memorySize, setMemorySize] = useState(64000);
+    const [strategy, setStrategy] = useState(strategies[0]);
+    const [error, setError] = useState('');
+    const usedMemory = blocks.reduce((total, block) => total + (block.allocation || 0), 0);
+    const usedBlocks = blocks.filter(block => block.allocation).length;
 
-    const [usedBlocks, setUsedBlocks] = useState(0);
-    const [freeBlocks, setFreeBlocks] = useState(4);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const candidates = blocks.filter(block => !block.allocation && block.block_size >= memorySize);
+        const sortedCandidates = strategy === 'Best Fit'
+            ? candidates.sort((a, b) => a.block_size - b.block_size)
+            : strategy === 'Worst Fit'
+                ? candidates.sort((a, b) => b.block_size - a.block_size)
+                : candidates;
 
-    const availableBlocks = [
-        {
-            id: 1,
-            block_size: 85000
-        },
-        {
-            id: 2,
-            block_size: 130000
-        },
-        {
-            id: 3,
-            block_size: 40000
-        },
-        {
-            id: 4,
-            block_size: 70000
+        if (!sortedCandidates.length) {
+            setError('No available block can fit this request.');
+            return;
         }
-    ];
 
-    const handleSubmit = () => {
+        const selectedBlock = sortedCandidates[0];
+        setBlocks(current => current.map(block =>
+            block.id === selectedBlock.id ? { ...block, allocation: memorySize } : block
+        ));
+        setError('');
+    };
 
-    }
-
-    const [memorySize, setMemorySize] = useState(0);
+    const handleReset = () => {
+        setBlocks(initialBlocks);
+        setError('');
+    };
 
     return (
-        <div className='page-container'>
+        <main className="page-container">
             <h1>Memory Allocation Simulator</h1>
 
-            <div className='row'>
-                <section className='memory-form-container'>
-                    <h1>Request Memory</h1>
-
-                    <form onSubmit='' className='memory-form'>
-                        <label htmlFor="memorySize">Size</label>
-                        <input 
-                            id='memorySize'
-                            type="range"
-                            min={0}
-                            max={1024}
-                            value={memorySize}
-                            onChange={(e) => setMemorySize(Number(e.target.value))}
-                        />
-
-                        <div className='text-input'>
-                            <input 
-                                type="text"
-                                min={1}
-                                max={1024}
+            <div className="row">
+                <section className="memory-form-container">
+                    <h2>Request Memory</h2>
+                    <form onSubmit={handleSubmit} className="memory-form">
+                        <div className="size-control">
+                            <label htmlFor="memorySize">Size:</label>
+                            <input
+                                id="memorySize"
+                                type="range"
+                                min="1"
+                                max="130000"
                                 value={memorySize}
-                                onChange={(e) => setMemorySize(Number(e.target.value))}
+                                onChange={event => setMemorySize(Number(event.target.value))}
                             />
-                            <h3 style={{marginLeft: 5}}>B</h3>
+                            <output htmlFor="memorySize">{memorySize.toLocaleString()}</output>
+                            <span className="unit">B</span>
                         </div>
+
+                        <div className="strategy-control">
+                            <span>Strategy:</span>
+                            <div className="strategy-options">
+                                {strategies.map(option => (
+                                    <button
+                                        key={option}
+                                        type="button"
+                                        className={strategy === option ? 'selected' : ''}
+                                        aria-pressed={strategy === option}
+                                        onClick={() => setStrategy(option)}
+                                    >
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="form-actions">
+                            <button type="submit" className="allocate-button">+&nbsp; Allocate Memory</button>
+                            <button type="button" className="reset-button" onClick={handleReset} aria-label="Reset allocations">
+                                ↻
+                            </button>
+                        </div>
+                        {error && <p className="allocation-error" role="alert">{error}</p>}
                     </form>
-                    <div className='created-blocks-container'>
-
-                    </div>
                 </section>
-                
-                <section className='analytics'>
-                    <h1>Memory Statistics</h1>
 
-                    <dl className='grid-container'>
-                        <div className='grid-item'>
-                            <dd style={{color: 'rgba(255, 0, 0, 0.7)'}}>{formattedUsedMemory}</dd>
+                <section className="analytics">
+                    <h2>Memory Statistics</h2>
+                    <dl className="grid-container">
+                        <div className="grid-item">
+                            <dd className="used-memory">{usedMemory.toLocaleString()}</dd>
                             <dt>Used Memory (bytes)</dt>
                         </div>
-                        <div className='grid-item'>
-                            <dd style={{color: 'rgba(0, 255, 0, 0.7)'}}>{formattedFreeMemory}</dd>
+                        <div className="grid-item">
+                            <dd className="free-memory">{(totalMemory - usedMemory).toLocaleString()}</dd>
                             <dt>Free Memory (bytes)</dt>
                         </div>
-                        <div className='grid-item'>
-                            <dd style={{color: 'rgba(128, 0, 250)'}}>{usedBlocks}</dd>
+                        <div className="grid-item">
+                            <dd className="used-blocks">{usedBlocks}</dd>
                             <dt>Used Blocks</dt>
                         </div>
-                        <div className='grid-item'>
-                            <dd style={{color: 'rgba(255, 180, 0)'}}>{freeBlocks}</dd>
+                        <div className="grid-item">
+                            <dd className="free-blocks">{blocks.length - usedBlocks}</dd>
                             <dt>Free Blocks</dt>
                         </div>
                     </dl>
                 </section>
             </div>
 
-            <div className='blocks-container'>
-                <h1>Available Blocks</h1>
-                <div className='available-blocks-container'>
-                    {availableBlocks.map(block => (
-                        <AvailableBlocks key={block.id} value={block.block_size}/>
+            <section className="blocks-container">
+                <h2>Available Blocks</h2>
+                <div className="available-blocks-container">
+                    {blocks.map(block => (
+                        <AvailableBlocks key={block.id} value={block.block_size} allocation={block.allocation || 0} />
                     ))}
                 </div>
-                
-            </div>
-        </div>
-    )
+            </section>
+        </main>
+    );
 }
