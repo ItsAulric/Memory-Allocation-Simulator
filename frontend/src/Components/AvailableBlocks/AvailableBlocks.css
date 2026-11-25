@@ -75,3 +75,31 @@
 .available-block:not(.used) .status span:first-child {
     color: rgba(0, 255, 0, 0.9);
 }
+
+@media (max-width: 800px) {
+    .allocation-data div {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .available-block {
+        font-size: 1em;
+        padding: 0;
+    }
+
+    .block-details {
+        min-height: 60px;
+        padding: 12px;
+    }
+
+    .allocation-data {
+        min-height: 0;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .allocation-data div {
+        gap: 4px;
+    }
+}

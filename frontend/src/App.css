@@ -198,8 +198,25 @@
 }
 
 @media (max-width: 800px) {
+    .page-container {
+        padding: 18px;
+    }
+
     .row {
         grid-template-columns: 1fr;
+    }
+
+    .memory-form-container,
+    .analytics {
+        min-height: auto;
+    }
+
+    .analytics {
+        min-height: 270px;
+    }
+
+    .blocks-container {
+        min-height: auto;
     }
 
     .available-blocks-container {
@@ -209,13 +226,51 @@
 
 @media (max-width: 480px) {
     .page-container {
-        padding: 15.4px;
+        align-items: stretch;
+        padding: 12px;
+    }
+
+    .page-container > h1 {
+        font-size: 18px;
+        overflow-wrap: anywhere;
     }
 
     .memory-form-container,
     .analytics,
     .blocks-container {
-        padding: 15.4px;
+        padding: 14px;
+    }
+
+    .memory-form-container h2,
+    .analytics h2,
+    .blocks-container h2 {
+        font-size: 18px;
+    }
+
+    .memory-form {
+        gap: 14px;
+        margin-top: 16px;
+    }
+
+    .size-control,
+    .strategy-control,
+    .form-actions {
+        gap: 8px;
+    }
+
+    .size-control input[type="range"] {
+        min-width: 40px;
+        min-height: 44px;
+    }
+
+    .size-control output {
+        min-width: 54px;
+        padding: 7px 5px;
+    }
+
+    .unit {
+        min-width: 24px;
+        padding: 7px 5px;
     }
 
     .strategy-control {
@@ -225,6 +280,43 @@
 
     .strategy-options {
         width: 100%;
+        gap: 6px;
+    }
+
+    .strategy-options button {
+        min-height: 44px;
+        padding: 8px 4px;
+        font-size: 14px;
+    }
+
+    .allocate-button,
+    .reset-button {
+        min-height: 44px;
+    }
+
+    .reset-button {
+        min-width: 44px;
+    }
+
+    .analytics {
+        min-height: 0;
+    }
+
+    .grid-container {
+        gap: 8px;
+    }
+
+    .grid-item {
+        min-height: 88px;
+        padding: 10px;
+    }
+
+    .grid-item dd {
+        font-size: 1.35rem;
+    }
+
+    .grid-item dt {
+        font-size: 14px;
     }
 
     .available-blocks-container {
