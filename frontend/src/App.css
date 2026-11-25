@@ -3,58 +3,58 @@
     color: #fff;
     background-color: #0c0c0c;
     background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 0);
-    background-size: 15px 15px;
+    background-size: 16.5px 16.5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 18px 24px 24px;
+    padding: 19.8px 26.4px 26.4px;
 }
 
 .page-container > h1 {
-    width: min(100%, 1200px);
-    margin-bottom: 16px;
-    font-size: 20px;
+    width: min(100%, 1386px);
+    margin-bottom: 17.6px;
+    font-size: 23.1px;
     text-align: center;
 }
 
 .blocks-container,
 .memory-form-container,
 .analytics {
-    border: 1px solid rgba(255, 255, 255, 0.38);
-    border-radius: 10px;
+    border: 1.1px solid rgba(255, 255, 255, 0.38);
+    border-radius: 11px;
     background-color: rgba(12, 12, 12, 0.7);
 }
 
 .row,
 .blocks-container {
-    width: min(100%, 1200px);
+    width: min(100%, 1386px);
 }
 
 .row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 17.6px;
 }
 
 .memory-form-container,
 .analytics {
     min-width: 0;
-    min-height: 278px;
-    padding: 16px;
+    min-height: 319px;
+    padding: 19.8px;
 }
 
 .memory-form-container h2,
 .analytics h2,
 .blocks-container h2 {
-    margin-bottom: 12px;
-    font-size: 18px;
+    margin-bottom: 13.2px;
+    font-size: 20.9px;
 }
 
 .memory-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 17.6px;
+    margin-top: 22px;
 }
 
 .size-control,
@@ -62,34 +62,34 @@
 .form-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
 }
 
 .size-control input[type="range"] {
-    min-width: 50px;
+    min-width: 55px;
     flex: 1;
     accent-color: #315cf0;
 }
 
 .size-control output {
-    min-width: 55px;
-    border-radius: 5px 0 0 5px ;
+    min-width: 60.5px;
+    border-radius: 5.5px 0 0 5.5px;
     background-color: #343c4b;
-    padding: 7px;
+    padding: 7.7px;
     text-align: center;
 }
 .unit {
-    min-width: 55px;
-    border-left: 1px solid rgba(255, 255, 255, 1);
-    border-radius: 0 5px 5px 0;
+    min-width: 60.5px;
+    border-left: 1.1px solid rgba(255, 255, 255, 1);
+    border-radius: 0 5.5px 5.5px 0;
     background-color: #343c4b;
-    padding: 7px;
+    padding: 7.7px;
     text-align: center;
 }
 
 .unit {
-    min-width: 24px;
-    margin-left: -10px;
+    min-width: 26.4px;
+    margin-left: -11px;
 }
 
 .strategy-control > span {
@@ -99,16 +99,16 @@
 .strategy-options {
     display: flex;
     flex: 1;
-    gap: 8px;
+    gap: 8.8px;
 }
 
 .strategy-options button,
 .reset-button {
     color: #fff;
     border: 0;
-    border-radius: 5px;
+    border-radius: 5.5px;
     background-color: #343c4b;
-    padding: 8px 12px;
+    padding: 9.9px 14.3px;
     cursor: pointer;
 }
 
@@ -129,20 +129,20 @@
 .reset-button {
     color: #fff;
     border: 0;
-    border-radius: 6px;
+    border-radius: 6.6px;
     font: inherit;
     cursor: pointer;
 }
 
 .allocate-button {
     flex: 1;
-    padding: 12px;
+    padding: 14.3px;
     font-weight: bold;
 }
 
 .reset-button {
-    min-width: 48px;
-    font-size: 1.3rem;
+    min-width: 52.8px;
+    font-size: 1.43rem;
 }
 
 .allocation-error {
@@ -152,20 +152,20 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 11px;
     margin: 0;
 }
 
 .grid-item {
-    min-height: 96px;
-    border-radius: 8px;
+    min-height: 110px;
+    border-radius: 8.8px;
     background-color: #262626;
-    padding: 14px;
+    padding: 16.5px;
 }
 
 .grid-item dd {
-    margin: 0 0 4px;
-    font-size: 1.65rem;
+    margin: 0 0 4.4px;
+    font-size: 1.925rem;
     font-weight: bold;
 }
 
@@ -186,15 +186,15 @@
 }
 
 .blocks-container {
-    min-height: 397px;
-    padding: 16px;
-    margin-top: 14px;
+    min-height: 456.5px;
+    padding: 19.8px;
+    margin-top: 15.4px;
 }
 
 .available-blocks-container {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 15px;
+    gap: 16.5px;
 }
 
 @media (max-width: 800px) {
@@ -209,13 +209,13 @@
 
 @media (max-width: 480px) {
     .page-container {
-        padding: 14px;
+        padding: 15.4px;
     }
 
     .memory-form-container,
     .analytics,
     .blocks-container {
-        padding: 14px;
+        padding: 15.4px;
     }
 
     .strategy-control {
