@@ -31,12 +31,9 @@ export default function App() {
         }
     ];
 
-    useEffect(() => {
-        const execute = () => {
-            availableBlocks.map(block => console.log(block.block_size));
-        }
-        execute();
-    }, [])
+    const handleSubmit = () => {
+        
+    }
 
     return (
         <div className='page-container'>
