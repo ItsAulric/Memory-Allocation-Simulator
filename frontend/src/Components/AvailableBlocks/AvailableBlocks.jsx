@@ -12,10 +12,10 @@ export default function AvailableBlocks(props) {
     const physicalSize = blockSize - randomNumber;
     const formattedPhysicalSize = physicalSize.toLocaleString();
 
-    const [isAvailable, setIsAvailable] = useState(true);
+    const [isUsed, setIsUsed] = useState(false);
     useEffect(() => {
         const checkBlock = () => {
-            if (props.used === true) setIsAvailable(false);
+            if (props.used === true) setIsUsed(true);
         }
         checkBlock();
     }, [])
@@ -37,16 +37,13 @@ export default function AvailableBlocks(props) {
                     <h2>Physical Size:</h2>
                     <h2>{formattedPhysicalSize} b</h2>
                 </div>
+
             </div>
-            {isAvailable
-                ?
-                <div className='status'>
-                    <p style={{ color: 'rgba(0, 255, 0, 0.9)' }}>&#9679;</p>
-                    <p>Available</p>
-                </div>
-                :
-                null
-            }
+            
+            <div className='status'>
+                <p style={{ color: 'rgba(0, 255, 0, 0.9)' }}>&#9679;</p>
+                <p>Available</p>
+            </div>
         </div>
     )
 }

@@ -32,8 +32,10 @@ export default function App() {
     ];
 
     const handleSubmit = () => {
-        
+
     }
+
+    const [memorySize, setMemorySize] = useState(0);
 
     return (
         <div className='page-container'>
@@ -44,7 +46,26 @@ export default function App() {
                     <h1>Request Memory</h1>
 
                     <form onSubmit='' className='memory-form'>
+                        <label htmlFor="memorySize">Size</label>
+                        <input 
+                            id='memorySize'
+                            type="range"
+                            min={0}
+                            max={1024}
+                            value={memorySize}
+                            onChange={(e) => setMemorySize(Number(e.target.value))}
+                        />
 
+                        <div className='text-input'>
+                            <input 
+                                type="text"
+                                min={1}
+                                max={1024}
+                                value={memorySize}
+                                onChange={(e) => setMemorySize(Number(e.target.value))}
+                            />
+                            <h3 style={{marginLeft: 5}}>B</h3>
+                        </div>
                     </form>
                     <div className='created-blocks-container'>
 
