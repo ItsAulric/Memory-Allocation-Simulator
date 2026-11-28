@@ -17,7 +17,7 @@ export default function AvailableBlocks({ value, allocation }) {
                     <span>{allocation.toLocaleString()} B</span>
                 </div>
                 <div>
-                    <span>Physical Size:</span>
+                    <span>Remaining Size:</span>
                     <span>{physicalSize.toLocaleString()} B</span>
                 </div>
             </div>
